@@ -23,3 +23,13 @@ export const createPost = async (req,res) => {
         res.status(409).json({message: error.messages})
     }
 }
+
+export const updatePost = async (req,res) => {
+    const { id: _id } = req.params // grabs the id from the router
+    const post = req.body
+    if(!mongoose.Types.Object.Id.isValid(_id)) return res.status(404).send('no post witht that it')
+
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id,post,{new:true})
+
+    res.json(updatedPost)
+}
