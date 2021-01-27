@@ -15,6 +15,9 @@ app.use(cors())
 dotenv.config()
 app.use('/posts', postRoutes)
 
+app.get('/',(req,res)=>{
+    res.send('hello')
+})
 
 const PORT = process.env.PORT || 5000;
 
